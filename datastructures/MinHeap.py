@@ -68,7 +68,8 @@ class MinHeap:
         return False
 
 
-def print_array(parent, n):
+def print_array(parent, n, key):
     for i in range(1, n):
-        print("% d - %d" % (parent[i], i))
+        if key[i] != 9000000000:
+            print("[%d]--[%d] weight: %d" % (parent[i], i, key[i]))
 

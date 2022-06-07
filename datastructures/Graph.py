@@ -44,4 +44,4 @@ class Graph:
                     parent[v] = u
                     min_heap.decrease_key(v, key[v])
 
-        print_array(parent, V)
+        print_array(parent, V, key)
