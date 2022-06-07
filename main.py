@@ -11,6 +11,7 @@ def run():
         graph.add_edge(arista[0], arista[1], arista[2])
 
     weights = graph.Prim()
+    print("-----------")
     for component in graph.connectedComponents():
         print('Vertex of the Connected component: {}, total weight of the MST: {}'.format(component, weights.pop(0)))
 

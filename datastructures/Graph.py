@@ -79,6 +79,6 @@ class Graph:
                     parent[v] = u
                     min_heap.decrease_key(v, key[v])
 
-        print_array(parent, V, key)
+        print_array(self.connectedComponents(), parent, V, key)
         weight = self.sumWeigth(self.connectedComponents(), key)
         return weight

@@ -68,9 +68,17 @@ class MinHeap:
         return False
 
 
-def print_array(parent, n, key):
+def print_array(cc,parent, n, key):
     print("Edges -- Minimum Cost Forest")
     for i in range(1, n):
         if key[i] != 9000000000:
             print("[%d]--[%d] weight: %d" % (parent[i], i, key[i]))
+
+    print("\nEdges -- by connected component")
+    for component in cc:
+        print("\nComponent ")
+        for vertex in component:
+            if key[vertex] != 9000000000:
+                print("[%d]--[%d] weight: %d" % (parent[vertex], vertex, key[vertex]))
+
 
