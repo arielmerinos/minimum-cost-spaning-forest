@@ -15,6 +15,7 @@ class Graph:
         self.graph[dest].insert(0, new_node)
 
     def Prim(self):
+        print(self.graph)
         V = self.V
         key = []
         parent = []
@@ -44,4 +45,9 @@ class Graph:
                     parent[v] = u
                     min_heap.decrease_key(v, key[v])
 
+        print()
+        print(key)
+        print()
+        print(self.graph)
         print_array(parent, V, key)
+        return key
