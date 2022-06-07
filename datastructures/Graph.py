@@ -7,15 +7,49 @@ class Graph:
     def __init__(self, vertex):
         self.V = vertex
         self.graph = defaultdict(list)
+        self.adj = [[] for i in range(vertex)]
 
     def add_edge(self, src, dest, weight):
+        self.adj[src].append(dest)
+        self.adj[dest].append(src)
+
         new_node = [dest, weight]
         self.graph[src].insert(0, new_node)
         new_node = [src, weight]
         self.graph[dest].insert(0, new_node)
 
+    def DFSUtil(self, temp, v, visited):
+        visited[v] = True
+        temp.append(v)
+        for i in self.adj[v]:
+            if not visited[i]:
+                temp = self.DFSUtil(temp, i, visited)
+        return temp
+
+    def connectedComponents(self):
+        visited = []
+        cc = []
+        for i in range(0, self.V):
+            visited.append(False)
+        for v in range(0, self.V):
+            if not visited[v]:
+                temp = []
+                cc.append(self.DFSUtil(temp, v, visited))
+        cc.pop(0)
+        return cc
+
+    def sumWeigth(self, cc, values):
+        components = []
+        for component in cc:
+            sumComponent = 0
+            for element in component:
+                if(values[element] != 9000000000):
+                    sumComponent += values[element]
+            components.append(sumComponent)
+        return components
+
+
     def Prim(self):
-        print(self.graph)
         V = self.V
         key = []
         parent = []
@@ -45,9 +79,6 @@ class Graph:
                     parent[v] = u
                     min_heap.decrease_key(v, key[v])
 
-        print()
-        print(key)
-        print()
-        print(self.graph)
         print_array(parent, V, key)
-        return key
+        weight = self.sumWeigth(self.connectedComponents(), key)
+        return weight

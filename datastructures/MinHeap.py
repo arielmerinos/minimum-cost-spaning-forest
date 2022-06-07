@@ -69,6 +69,7 @@ class MinHeap:
 
 
 def print_array(parent, n, key):
+    print("Edges -- Minimum Cost Forest")
     for i in range(1, n):
         if key[i] != 9000000000:
             print("[%d]--[%d] weight: %d" % (parent[i], i, key[i]))
